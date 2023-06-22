@@ -1,0 +1,97 @@
+.ScrollContainer {
+    position: relative;
+    height: 45vh;
+    width: 140px;
+    background-color: #ffdd8a;
+    text-overflow: ellipsis;
+    display: flex;
+    margin: auto;
+    margin-top: 130px;
+    border: solid;
+    border-color: #FFD700 transparent #FFD700 transparent;
+    border-width: 15px 0px 15px 0px;
+    transition: width 2s ease;
+    z-index: 5;
+}
+
+.ScrollContainer.open {
+    width: 70%;
+}
+
+.Edge {
+    position: relative;
+    visibility: visible;
+    margin-top: -5vh;
+    height: 55vh;
+    width: 70px;
+    background-color: #ffce52;
+    border: solid 10px;
+    border-color: #ffbe19 #ffbe19 transparent transparent;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.ScrollLeft {
+    margin-right: auto;
+}
+
+.ScrollRight {
+    margin-left: auto;
+}
+
+.ScrollContent {
+    position: absolute;
+    font-family: 'Delicious Handrawn', cursive;
+    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Kalam', cursive;
+    font-size: 22px;
+    cursor: default;
+}
+
+.ContentBox {
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: scroll;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.ContentBox::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+@media (max-width: 800px) {
+    .ScrollContainer{
+        height: 40vh;
+    }
+
+    .ContentBox {
+        overflow: scroll;
+    }
+
+    .ScrollContent {
+        font-size: 18px;
+    }
+
+    .Edge {
+        width: 45px;
+        height: 50vh;
+    }
+    
+    .ContentBox {
+        width: 60%;
+    }
+
+    .ScrollContainer.open {
+        width: 90%;
+    }
+
+    .ContentBox::-webkit-scrollbar {
+        display: none;
+    }
+}

@@ -1,0 +1,50 @@
+.HomeSection{
+height: 100vh;
+position: relative;
+overflow-x: hidden;
+}
+
+.HomeHeader{
+  position: absolute;
+  color: white;
+  margin-top: 20%;
+  margin-left: 60%;
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Tsukimi Rounded', sans-serif;
+  cursor: default;  
+}
+
+.ParallaxLayer {
+  position: fixed;
+  background-image: url(anime.png);
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 50% 70%;
+  width: 80%;
+  height: 100%;
+  transition: transform 0.5s ease-out;
+  z-index: 10;
+}
+
+.bgDesign{
+  height: 100%;
+  background-color: rgb(46, 108, 255);
+  width: 50%;
+  float: left;
+  border: 0px solid;  
+  transition: transform 0.5s ease-out;
+  border-radius: 0% 0% 100% 0%;
+}
+
+@media (max-width: 1000px){
+  .HomeHeader{
+    margin-left: 10%;
+    margin-top: 30%;
+    font-size: 40px;
+  }
+  .ParallaxLayer{
+    background-size: 100%  50%;
+    background-position: bottom;
+  }
+}

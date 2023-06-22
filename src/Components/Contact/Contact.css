@@ -1,0 +1,192 @@
+.ContactSection {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.ContactHeader {
+  position: relative;
+  top: 80px;
+  font-size: 40px;
+  text-align: center;
+  font-family: 'Delicious Handrawn', cursive;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.ContactHeader::after {
+  position: relative;
+  content: '';
+  height: 1px;
+  width: 5%;
+  left: 49%;
+  margin-top: 20px;
+  display: grid;
+  background: white;
+}
+
+.ContactContainer {
+  position: absolute;
+  top: 20vh;
+  left: 20%;
+  translate: 0% 50%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, translate 1s ease;
+}
+
+.showContact {
+  translate: 0% 0%;
+  opacity: 1;
+}
+
+.ContactItem {
+  margin: 30px;
+  height: 90px;
+  width: 90px;
+  background: white;
+  border: 0px solid transparent;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  transition: .8s width;
+}
+
+.ContactItem:hover {
+  width: 400px;
+}
+
+.icon {
+  height: 70px;
+  width: 70px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  margin: 9px;
+}
+
+.Border {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  height: 70px;
+  width: 70px;
+  border: 10px solid;
+  border-color: rgb(0, 255, 0) rgb(0, 255, 0) transparent transparent;
+  background: transparent;
+  border-radius: 50%;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+  animation-duration: 1.5s;
+}
+
+.Hidden {
+  margin-top: 30px;
+}
+
+.HiddenLink {
+  white-space: nowrap;
+  margin-left: 20px;
+  font-size: 25px;
+  color: black;
+  text-decoration: none;
+  font-family: 'Delicious Handrawn', cursive;
+  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Kalam', cursive;
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: .6s;
+}
+
+.HiddenLink:hover {
+  filter: brightness(0.9) invert(0.7) sepia(0.5) hue-rotate(100deg) saturate(200%) contrast(40%);
+}
+
+.EmailLogo{
+  height: 30px;
+  width: 30px;
+  margin-left: 8px;
+}
+
+.contactme {
+  float: right;
+  position: absolute;
+  right: 0px;
+  top: 5%;
+}
+
+.ContactLogo {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.ContactbgDesign {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  height: 100%;
+  width: 50%;
+  background-color: rgb(46, 108, 255);
+  border: 0px solid;
+  border-radius: 100% 0% 0% 0%;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1000px) {
+  .ContactHeader {
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  .ContactContainer {
+    left: auto;
+  }
+
+  .ContactHeader::after {
+    display: none;
+  }
+
+  .ContactItem {
+    height: 70px;
+    width: 70px;
+  }
+
+  .icon {
+    height: 50px;
+    width: 50px;
+  }
+
+  .Border {
+    height: 50px;
+    width: 50px;
+  }
+
+  .ContactItem:hover {
+    width: 300px;
+  }
+
+  .contactme {
+    height: 300px;
+    width: 300px;
+    top: 10%;
+  }
+
+  .Hidden {
+    margin-top: 24px;
+  }
+
+  .HiddenLink {
+    font-size: 18px;
+  }
+}

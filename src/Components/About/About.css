@@ -1,0 +1,56 @@
+.AboutSection {
+    min-height: 100vh;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    position: relative;
+    z-index: -10;
+}
+
+.AboutHeader {
+    font-size: 40px;
+    margin-top: 5%;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: 'Delicious Handrawn', cursive;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.AboutHeader::after {
+    position: relative;
+    content: '';
+    height: 1px;
+    width: 5%;
+    left: 49%;
+    margin-top: 20px;
+    display: grid;
+    background: white;
+}
+
+.BlueBall{
+    background: rgb(46, 108, 255);
+    height: 300px;
+    width: 300px;
+    border: 0px solid;
+    border-radius: 50%;
+    position: absolute;
+    right: 10%;
+    top: 0px;
+    z-index: -1;
+}
+
+@media (max-width: 1000px) {
+    .AboutSection {
+        display: block;
+    }
+
+    .AboutHeader {
+        text-align: left;
+        margin-left: 20px;
+        margin-top: 90px;
+    }
+
+    .AboutHeader::after {
+        height: 0px;
+    }
+}

@@ -2,7 +2,6 @@
     position: absolute;
     width: 70vh;
     height: auto;
-    top: calc(50% - auto);
     left: calc(50% - 35vh);
     background-color: rgb(46, 44, 44);
     z-index: 100;

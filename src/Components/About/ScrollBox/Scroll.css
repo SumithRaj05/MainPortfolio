@@ -45,6 +45,7 @@
     font-family: 'Fira Sans', sans-serif;
     font-family: 'Kalam', cursive;
     font-size: 22px;
+    font-weight: 560;
     cursor: default;
 }
 
@@ -57,7 +58,7 @@
     transform: translate(-50%, -50%);
     overflow: scroll;
     text-align: center;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .ContentBox::-webkit-scrollbar {
@@ -82,7 +83,7 @@
         width: 45px;
         height: 50vh;
     }
-    
+
     .ContentBox {
         width: 60%;
     }

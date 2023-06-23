@@ -41,13 +41,15 @@ export default function Scroll() {
     }, [scrollY]);
 
     return <div className={`ScrollContainer ${isScrolled ? "open" : ""}`}>
-        <div className="ScrollLeft Edge"></div>
+        <div className="ScrollLeft Edge">
+        </div>
         <div className="ContentBox" style={{
             opacity: content !== "" ? 1 : 0,
             transition: "opacity 1s ease-in"
         }}>
             <p className="ScrollContent">{content}</p>
         </div>
-        <div className="ScrollRight Edge"></div>
+        <div className="ScrollRight Edge">
+        </div>
     </div>
 }

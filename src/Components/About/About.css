@@ -4,7 +4,6 @@
     padding-top: 10px;
     padding-bottom: 50px;
     position: relative;
-    z-index: -10;
 }
 
 .AboutHeader {
@@ -35,8 +34,7 @@
     border-radius: 50%;
     position: absolute;
     right: 10%;
-    top: 0px;
-    z-index: -1;
+    top: 25%;
 }
 
 @media (max-width: 1000px) {

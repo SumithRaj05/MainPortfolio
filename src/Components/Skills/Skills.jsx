@@ -36,11 +36,11 @@ export default function Skills() {
                         Skill="CSS3"
                     />
                     <SkillBar
-                        Points={4}
+                        Points={3}
                         Skill="JavaScript"
                     />
                     <SkillBar
-                        Points={3}
+                        Points={2}
                         Skill="GIMP"
                     />
                     <SkillBar
@@ -55,10 +55,6 @@ export default function Skills() {
                     />
                     <SkillBar
                         Points={3}
-                        Skill="Express js"
-                    />
-                    <SkillBar
-                        Points={3}
                         Skill="React js"
                     />
                     <SkillBar
@@ -68,6 +64,10 @@ export default function Skills() {
                     <SkillBar
                         Points={3}
                         Skill="Linux"
+                    />
+                    <SkillBar
+                        Points={4}
+                        Skill="Python"
                     />
                 </div>
             </div>

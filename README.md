@@ -1,3 +1,20 @@
+# Sumith Rajpurohit | Portfolio
+
+Personal portfolio built with React (Create React App). Live at https://sr-portfolioo.netlify.app/
+
+Sections: Home, About, Experience, Projects, Skills and Contact.
+
+## Optional environment variables
+
+The contact form uses EmailJS. The IDs are public client-side values and the current ones are used by default.
+To override them (for example in Netlify), set:
+
+- `REACT_APP_EMAILJS_SERVICE_ID`
+- `REACT_APP_EMAILJS_TEMPLATE_ID`
+- `REACT_APP_EMAILJS_PUBLIC_KEY`
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

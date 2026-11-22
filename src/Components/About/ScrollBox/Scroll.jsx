@@ -1,55 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Scroll.css";
 
 export default function Scroll() {
-    const [scrollY, setScrollY] = useState(0);
-    const [content, setContent] = useState("");
-    const [isScrolled, setScrolled] = useState(false);
+    const wrapRef = useRef(null);
+    const [isOpen, setOpen] = useState(false);
 
     useEffect(() => {
-        const contentElement = document.querySelector(".ScrollContent");
-        const handleListener = () => {
-            setScrollY(Math.round((window.scrollY * 100) / scrollHeight));
-            if (contentElement) {
-                if (scrollY >= 15 && scrollY <= 40) {
-                    setTimeout(() => {
-                        setContent(
-                            <React.Fragment>
-                                Hi, I'm <strong> Sumith</strong>, a <strong>B.Tech</strong> student with a keen interest in <strong>web development</strong>. I am passionate about creating visually appealing and interactive websites using modern technologies. During my studies, I have gained a solid foundation in programming languages such as <strong>C++, Python and JavaScript</strong>. I have also acquired experience in front-end development frameworks like <strong>React</strong>, which I utilize to build dynamic and responsive web applications. I am a <strong>quick learner</strong>, always eager to explore new technologies and stay updated with the latest trends in web development. Currently, I am actively seeking opportunities to apply my knowledge and skills in real-world projects. I would love to contribute and grow as a web developer.
-                            </React.Fragment>
-                        );
-                    }, 2000);
-                    setScrolled(true);
-                } else {
-                    setContent("");
-                    setScrolled(false);
-                }
-            }
+        const wrap = wrapRef.current;
+        if (!wrap) return undefined;
+
+        // No unrolling animation for people who prefer reduced motion
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            || typeof IntersectionObserver === "undefined") {
+            setOpen(true);
+            return undefined;
         }
-        const TotalHeight = Math.max(
-            document.body.scrollHeight, document.documentElement.scrollHeight,
-            document.body.offsetHeight, document.documentElement.offsetHeight,
-            document.body.clientHeight, document.documentElement.clientHeight
-        );
-        const scrollHeight = TotalHeight - window.innerHeight;
 
-        setScrollY(Math.round((window.scrollY * 100) / scrollHeight));
+        // Unroll when a good part of the scroll is on screen,
+        // roll it back up only once it has fully left the screen.
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.intersectionRatio >= 0.25) setOpen(true);
+            else if (!entry.isIntersecting) setOpen(false);
+        }, { threshold: [0, 0.25] });
 
-        document.addEventListener("scroll", handleListener);
+        observer.observe(wrap);
+        return () => observer.disconnect();
+    }, []);
 
-        return () => document.removeEventListener("scroll", handleListener);
-    }, [scrollY]);
-    
-    return <div className={`ScrollContainer ${isScrolled ? "open" : ""}`}>
-        <div className="ScrollLeft Edge">
+    return <div ref={wrapRef} className={`ScrollWrap ${isOpen ? "open" : ""}`}>
+        <div className="ScrollContainer" aria-hidden="true">
+            <div className="ScrollLeft Edge"></div>
+            <div className="ScrollRight Edge"></div>
         </div>
-        <div className="ContentBox" style={{
-            opacity: content !== "" ? 1 : 0,
-            transition: "opacity 1s ease-in"
-        }}>
-            <p className="ScrollContent">{content}</p>
-        </div>
-        <div className="ScrollRight Edge">
-        </div>
+        <p className="ScrollContent">
+            Hi, I'm <strong>Sumith Rajpurohit</strong>, a <strong>QA Engineer at RUCKUS Networks</strong> and
+            a <strong>B.Tech</strong> graduate (2025) in Computing and Information Technology
+            from <strong>REVA University</strong>. At work I build with <strong>AI agents and LLMs</strong>,
+            create <strong>productivity automation</strong>, and work on product features as a QA Engineer.
+            Outside work I love building things end to end: full-stack apps with <strong>React, Node.js and
+            MongoDB</strong>, local <strong>RAG</strong> pipelines with Ollama, <strong>ESP32 IoT</strong> gadgets
+            and a custom <strong>Linux</strong> desktop. I'm a <strong>quick learner</strong> who enjoys
+            turning ideas into working software.
+        </p>
     </div>
 }

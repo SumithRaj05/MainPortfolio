@@ -1,55 +1,137 @@
 .card {
     position: relative;
-    margin-right: 80px;
+    box-sizing: border-box;
+    margin-right: 40px;
     flex: 0 0 auto;
+    width: 280px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    white-space: normal;
     background-color: #ffdd8a;
     border: solid 5px #ffbe19;
     border-radius: 10px;
     scroll-snap-align: center;
-    transition: height 0.2s ease-in-out, width 0.2s ease-in-out, opacity 0.2s ease;
-    padding: 10px;
+    padding: 14px 16px;
     box-shadow: 10px 10px 20px black;
+    opacity: 0.3;
+    transform: scale(0.82);
+    cursor: pointer;
+    transition: transform 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card a {
+    pointer-events: none;
+}
+
+.card.activeCard {
+    opacity: 1;
+    transform: scale(1);
+    cursor: default;
+}
+
+.card.activeCard a {
+    pointer-events: auto;
+}
+
+.card.activeCard:hover {
+    transform: translateY(-6px) rotate(-0.6deg);
+    box-shadow: 14px 16px 26px black;
+}
+
+.CardBadge {
+    position: absolute;
+    top: -14px;
+    right: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: white;
+    background: rgb(29, 78, 216);
+    border-radius: 20px;
+    padding: 4px 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .CardHeader{
-    margin: 6px;
-    margin-bottom: 10px;
-    transition: font-size 0.2s ease-in-out;
-    font-family: 'Delicious Handrawn', cursive;
+    margin: 4px 0px 10px;
+    font-size: 23px;
+    line-height: 1.2;
+    color: black;
     font-family: 'Fira Sans', sans-serif;
+}
+
+.ProjectTools {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    min-height: 45px;
+}
+
+.ProjectIcons {
+    display: block;
+    height: 45px;
+    width: 45px;
+    object-fit: contain;
+}
+
+.ProjectIcons.wide {
+    width: 80px;
+}
+
+.ToolChip {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .CardDesc{
-    margin-top: 10px;
-    transition: font-size 0.2s ease-in-out;
-    font-family: 'Delicious Handrawn', cursive;
-    font-family: 'Fira Sans', sans-serif;
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.45;
+    color: black;
     font-family: 'Kalam', cursive;
 }
 
+.CardLinks {
+    margin-top: auto;
+    display: flex;
+    gap: 12px;
+    padding: 6px 4px 2px;
+}
+
+.CardLinks a {
+    display: inline-flex;
+    border-radius: 6px;
+}
+
 .GitLogo, .DemoLogo{
-    position: absolute;
     height: 35px;
     width: 35px;
     cursor: pointer;
-}
-
-.GitLogo{
-    bottom: 20px;
-    left: 20px;
-}
-
-.DemoLogo{
-    bottom: 20px;
-    left: 65px;
+    transition: transform 0.2s ease;
 }
 
 .GitLogo:hover, .DemoLogo:hover{
+    transform: scale(1.12);
     filter: brightness(0.9) invert(0.7) sepia(0.5) hue-rotate(100deg) saturate(200%) contrast(40%);
 }
 
 @media (max-width: 1000px){
     .card{
-        margin-right: 100px;
+        width: 260px;
+        height: 360px;
+        margin-right: 24px;
+    }
+    .CardDesc{
+        font-size: 16px;
     }
 }

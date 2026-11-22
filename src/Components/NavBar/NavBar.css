@@ -1,5 +1,6 @@
 .navbar {
   position: fixed;
+  top: 0;
   background: black;
   width: 100%;
   height: 60px;
@@ -14,27 +15,25 @@
   color: white;
   margin: 15px;
   margin-left: 5%;
-  font-family: 'Delicious Handrawn', cursive;
-  font-family: 'Fira Sans', sans-serif;
-  font-family: 'Kalam', cursive;
-  font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .navbar-icon {
   display: none;
   color: white;
+  background: transparent;
+  border: none;
   position: absolute;
   top: 0px;
-  right: 20px;
-  margin-top: 20px;
+  right: 10px;
+  height: 60px;
+  width: 52px;
   font-size: 28px;
-  font-family: 'Delicious Handrawn', cursive;
-  font-family: 'Fira Sans', sans-serif;
-  font-family: 'Kalam', cursive;
-  font-family: 'Open Sans', sans-serif;
+  line-height: 60px;
   font-family: 'Roboto', sans-serif;
+  z-index: 101;
 }
 
 .navbar-menu {
@@ -46,7 +45,7 @@
   transition: 1s;
 }
 
-li {
+.navbar-link li {
   display: inline-flex;
 }
 
@@ -55,10 +54,6 @@ li {
   text-decoration: none;
   color: white;
   margin-right: 30px;
-  font-family: 'Delicious Handrawn', cursive;
-  font-family: 'Fira Sans', sans-serif;
-  font-family: 'Kalam', cursive;
-  font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -73,19 +68,13 @@ li {
   border-radius: 20px;
 }
 
-.link:hover::after {
+.link:hover::after,
+.link:focus-visible::after,
+.link.current::after {
   width: 100%;
 }
 
-.NavIcon {
-  margin-top: 10px;
-  margin-left: 10%;
-  height: 40px;
-  width: 70px;
-  cursor: pointer;
-}
-
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .navbar-menu {
     height: 100vh;
     width: 0px;
@@ -93,21 +82,53 @@ li {
     position: absolute;
     right: 0px;
     padding: 0px;
+    overflow: hidden;
+    visibility: hidden;
+    transition: width 0.6s ease, visibility 0s linear 0.6s;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .navbar-menu.open {
+    width: 80%;
+    visibility: visible;
+    transition: width 0.6s ease, visibility 0s;
   }
 
   .navbar-icon {
     display: block;
-    z-index: 100;
   }
 
-  ul {
+  .navbar-link {
     margin-top: 60px;
+    list-style: none;
   }
 
-  li {
+  .navbar-link li {
+    display: block;
+    border-bottom: solid 1px black;
+  }
+
+  .navbar-link .link {
     display: block;
     padding: 20px;
-    border: solid 1px black;
-    width: 100%;
+    margin-right: 0px;
+    white-space: nowrap;
+  }
+
+  .link::after {
+    margin-top: 4px;
+  }
+
+  .link.current::after,
+  .link:hover::after {
+    width: 40px;
+    background: #FFD700;
+  }
+}
+
+@media (max-width: 360px) {
+  .navHeader {
+    font-size: 22px;
+    margin-top: 18px;
   }
 }

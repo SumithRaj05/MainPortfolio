@@ -1,29 +1,47 @@
-.ScrollContainer {
+/*
+ * The paper scroll. The wrapper takes its height from the bio text,
+ * so the full bio is always readable (no inner scrolling / clipping).
+ * The parchment and the two rollers sit behind the text and unroll
+ * from 140px to full width when the section comes into view.
+ */
+.ScrollWrap {
     position: relative;
-    height: 45vh;
-    width: 140px;
-    background-color: #ffdd8a;
-    text-overflow: ellipsis;
-    display: flex;
+    width: 70%;
+    min-height: 45vh;
     margin: auto;
     margin-top: 130px;
-    border: solid;
-    border-color: #FFD700 transparent #FFD700 transparent;
-    border-width: 15px 0px 15px 0px;
-    transition: width 2s ease;
+    margin-bottom: 8vh;
+    display: flex;
+    align-items: center;
     z-index: 5;
 }
 
-.ScrollContainer.open {
-    width: 70%;
+.ScrollContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    background-color: #ffdd8a;
+    display: flex;
+    border: solid;
+    border-color: #FFD700 transparent #FFD700 transparent;
+    border-width: 15px 0px 15px 0px;
+    transition: width 1.6s ease;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.ScrollWrap.open .ScrollContainer {
+    width: 100%;
 }
 
 .Edge {
     position: relative;
-    visibility: visible;
-    margin-top: -5vh;
-    height: 55vh;
+    margin: calc(-5vh - 15px) 0px;
     width: 70px;
+    flex-shrink: 0;
     background-color: #ffce52;
     border: solid 10px;
     border-color: #ffbe19 #ffbe19 transparent transparent;
@@ -40,59 +58,56 @@
 }
 
 .ScrollContent {
-    position: absolute;
-    font-family: 'Delicious Handrawn', cursive;
-    font-family: 'Fira Sans', sans-serif;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 45px calc(90px + 4%);
+    text-align: center;
     font-family: 'Kalam', cursive;
     font-size: 22px;
     font-weight: 560;
+    line-height: 1.6;
+    color: black;
     cursor: default;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.ContentBox {
-    position: absolute;
-    width: 70%;
-    height: 80%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: scroll;
-    text-align: center;
-    text-overflow: ellipsis
+.ScrollWrap.open .ScrollContent {
+    opacity: 1;
+    transform: none;
+    transition-delay: 1.2s;
 }
 
-.ContentBox::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+.ScrollContent strong {
+    font-weight: 700;
 }
 
 @media (max-width: 800px) {
-    .ScrollContainer{
-        height: 40vh;
-    }
-
-    .ContentBox {
-        overflow: scroll;
+    .ScrollWrap {
+        width: 90%;
+        min-height: 40vh;
+        margin-top: 90px;
     }
 
     .ScrollContent {
-        font-size: 18px;
+        font-size: 17px;
+        line-height: 1.5;
+        padding: 30px 58px;
     }
 
     .Edge {
         width: 45px;
-        height: 50vh;
+        margin-top: calc(-3vh - 15px);
+        margin-bottom: calc(-3vh - 15px);
     }
+}
 
-    .ContentBox {
-        width: 60%;
-    }
-
-    .ScrollContainer.open {
-        width: 90%;
-    }
-
-    .ContentBox::-webkit-scrollbar {
-        display: none;
+@media (max-width: 360px) {
+    .ScrollContent {
+        font-size: 16px;
+        padding: 26px 54px;
     }
 }

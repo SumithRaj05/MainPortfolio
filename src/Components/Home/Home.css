@@ -1,7 +1,7 @@
 .HomeSection{
 height: 100vh;
 position: relative;
-overflow-x: hidden;
+overflow: hidden;
 }
 
 .HomeHeader{
@@ -10,14 +10,48 @@ overflow-x: hidden;
   margin-top: 20%;
   margin-left: 60%;
   text-align: center;
-  font-size: 50px;
   font-family: 'Tsukimi Rounded', sans-serif;
-  cursor: default;  
+  cursor: default;
+}
+
+.HomeTitle{
+  font-size: 50px;
+  animation: homeFadeUp 1s ease-out both;
+}
+
+.HomeTagline{
+  margin-top: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  animation: homeFadeUp 1s ease-out 0.4s both;
+}
+
+.HomeTagline span{
+  color: #FFD700;
+}
+
+.HomeArrow{
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 50px;
+  line-height: 1;
+  color: white;
+  text-decoration: none;
+  padding: 0 12px;
+  border-radius: 12px;
+  animation: homeFadeUp 1s ease-out 0.8s both, homeBounce 2s ease-in-out 2s infinite;
+}
+
+.HomeArrow:hover{
+  color: #FFD700;
 }
 
 .ParallaxLayer {
   position: fixed;
-  background-image: url(anime.png);
+  background-image: url(anime.webp);
   background-position: left;
   background-repeat: no-repeat;
   background-size: 50% 70%;
@@ -32,19 +66,48 @@ overflow-x: hidden;
   background-color: rgb(46, 108, 255);
   width: 50%;
   float: left;
-  border: 0px solid;  
+  border: 0px solid;
   transition: transform 0.5s ease-out;
   border-radius: 0% 0% 100% 0%;
+}
+
+@keyframes homeFadeUp{
+  from{ opacity: 0; transform: translateY(20px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+@keyframes homeBounce{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(10px); }
 }
 
 @media (max-width: 1000px){
   .HomeHeader{
     margin-left: 10%;
     margin-top: 30%;
+    width: 80%;
+  }
+  .HomeTitle{
+    font-size: 40px;
+  }
+  .HomeTagline{
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .HomeArrow{
+    margin-top: 24px;
     font-size: 40px;
   }
   .ParallaxLayer{
     background-size: 100%  50%;
     background-position: bottom;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ParallaxLayer{
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }

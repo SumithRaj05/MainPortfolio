@@ -1,17 +1,46 @@
 import "./Skills.css";
 import SkillBar from "./SkillBar/SkillBar";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
+const COLUMN_1 = [
+    { skill: "HTML5", points: 4 },
+    { skill: "CSS3", points: 4 },
+    { skill: "JavaScript", points: 3 },
+    { skill: "TypeScript", points: 3 },
+    { skill: "React js & Vite", points: 3 },
+    { skill: "Node js & Express", points: 3 },
+    { skill: "MongoDB", points: 2 },
+    { skill: "Git & GitHub Actions", points: 3 },
+];
+
+const COLUMN_2 = [
+    { skill: "Python", points: 4 },
+    { skill: "C++", points: 3 },
+    { skill: "QA & Testing", points: 4 },
+    { skill: "AI Agents & LLMs", points: 3 },
+    { skill: "RAG (Ollama, LlamaIndex)", points: 3 },
+    { skill: "ESP32 & IoT", points: 3 },
+    { skill: "Linux", points: 3 },
+    { skill: "AWS EC2", points: 2 },
+];
 
 export default function Skills() {
 
+    const containerRef = useRef(null);
+
     useEffect(() => {
-        const Container = document.querySelector(".Containers");
+        const Container = containerRef.current;
+        if (!Container) return undefined;
+        if (typeof IntersectionObserver === "undefined") {
+            Container.classList.add("showSkills");
+            return undefined;
+        }
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if(entry.isIntersecting){
+                if (entry.isIntersecting) {
                     entry.target.classList.add("showSkills")
-                }else{
+                } else {
                     entry.target.classList.remove("showSkills")
                 }
             })
@@ -19,57 +48,19 @@ export default function Skills() {
 
         observer.observe(Container);
 
-        return () => observer.unobserve(Container)
-    },[])
+        return () => observer.disconnect()
+    }, [])
 
     return (
         <section className="SkillsSection" id="Skills">
-            <h1 className="SkillsHeader">My Skills</h1>
-            <div className="Containers">
-                <div className="SkillsContainer1">
-                    <SkillBar
-                        Points={4}
-                        Skill="HTML5"
-                    />
-                    <SkillBar
-                        Points={4}
-                        Skill="CSS3"
-                    />
-                    <SkillBar
-                        Points={3}
-                        Skill="JavaScript"
-                    />
-                    <SkillBar
-                        Points={2}
-                        Skill="GIMP"
-                    />
-                    <SkillBar
-                        Points={3}
-                        Skill="Git"
-                    />
-                </div>
-                <div className="SkillsContainer2">
-                    <SkillBar
-                        Points={2}
-                        Skill="MongoDB"
-                    />
-                    <SkillBar
-                        Points={3}
-                        Skill="React js"
-                    />
-                    <SkillBar
-                        Points={3}
-                        Skill="Node js"
-                    />
-                    <SkillBar
-                        Points={3}
-                        Skill="Linux"
-                    />
-                    <SkillBar
-                        Points={4}
-                        Skill="Python"
-                    />
-                </div>
+            <h2 className="SkillsHeader SectionHeader">My Skills</h2>
+            <div className="Containers" ref={containerRef}>
+                <ul className="SkillsContainer1">
+                    {COLUMN_1.map((s) => <SkillBar key={s.skill} Skill={s.skill} Points={s.points} />)}
+                </ul>
+                <ul className="SkillsContainer2">
+                    {COLUMN_2.map((s) => <SkillBar key={s.skill} Skill={s.skill} Points={s.points} />)}
+                </ul>
             </div>
         </section>
     )

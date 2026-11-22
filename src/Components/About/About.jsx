@@ -4,9 +4,9 @@ import Scroll from "./ScrollBox/Scroll";
 export default function About() {
     return (
         <section className="AboutSection" id="About">
-            <h1 className="AboutHeader">About Me</h1>
+            <h2 className="AboutHeader SectionHeader">About Me</h2>
             <Scroll />
-            <div className="BlueBall"></div>
+            <div className="BlueBall" aria-hidden="true"></div>
         </section>
     )
 }

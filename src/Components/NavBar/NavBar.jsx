@@ -1,36 +1,59 @@
+import { useEffect, useState } from "react";
 import "./NavBar.css";
 
+const LINKS = ["About", "Experience", "Projects", "Skills", "Contact"];
+
 export default function NavBar() {
-    const showNav = () => {
-        var nav = document.querySelector(".navbar-menu");
-        var navIcon = document.querySelector(".navbar-icon");
-        if (nav.style.width === "0px") {
-            nav.style.width = "80%";
-            navIcon.innerHTML = "X";
-        } else {
-            nav.style.width = "0px";
-            navIcon.innerHTML = "&#9776;";
-        }
-        var anchor = document.querySelectorAll(".link");
-        for (let i = 0; i < anchor.length; i++) {
-            anchor[i].addEventListener('click', () => {
-                nav.style.width = "0px";
-                navIcon.innerHTML = "&#9776;";
-            })
-        }
-    }
+    const [open, setOpen] = useState(false);
+    const [active, setActive] = useState("");
+
+    // Close the mobile menu with Escape
+    useEffect(() => {
+        if (!open) return undefined;
+        const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+        document.addEventListener("keydown", onKey);
+        return () => document.removeEventListener("keydown", onKey);
+    }, [open]);
+
+    // Underline the link of the section currently on screen
+    useEffect(() => {
+        const sections = ["Home", ...LINKS]
+            .map((id) => document.getElementById(id))
+            .filter(Boolean);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) setActive(entry.target.id);
+            });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        sections.forEach((s) => observer.observe(s));
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <nav className="navbar">
-            <a className="navHeader" href="/#Home">Sumith Rajpurohit</a>
-            <div className="navbar-icon" onClick={showNav}>&#9776;</div>
-            <div className="navbar-menu">
+        <nav className="navbar" aria-label="Main">
+            <a className="navHeader" href="/#Home" onClick={() => setOpen(false)}>Sumith Rajpurohit</a>
+            <button
+                type="button"
+                className="navbar-icon"
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+                aria-controls="navbar-menu"
+                onClick={() => setOpen((o) => !o)}
+            >
+                <span aria-hidden="true">{open ? "\u2715" : "\u2630"}</span>
+            </button>
+            <div id="navbar-menu" className={`navbar-menu ${open ? "open" : ""}`}>
                 <ul className="navbar-link">
-                    {/* <li><a className="link" href="/#Home">Home</a></li> */}
-                    <li><a className="link" href="/#About">About</a></li>
-                    <li><a className="link" href="/#Projects">Projects</a></li>
-                    <li><a className="link" href="/#Skills">Skills</a></li>
-                    <li><a className="link" href="/#Contact">Contact</a></li>
+                    {LINKS.map((id) => (
+                        <li key={id}>
+                            <a
+                                className={`link ${active === id ? "current" : ""}`}
+                                aria-current={active === id ? "true" : undefined}
+                                href={`/#${id}`}
+                                onClick={() => setOpen(false)}
+                            >{id}</a>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </nav>

@@ -1,5 +1,6 @@
 .ContactSection {
   height: 100vh;
+  min-height: 720px;
   position: relative;
   overflow: hidden;
 }
@@ -9,7 +10,6 @@
   top: 80px;
   font-size: 40px;
   text-align: center;
-  font-family: 'Delicious Handrawn', cursive;
   font-family: 'Fira Sans', sans-serif;
 }
 
@@ -18,13 +18,14 @@
   content: '';
   height: 1px;
   width: 5%;
-  left: 49%;
+  left: 47.5%;
   margin-top: 20px;
   display: grid;
   background: white;
 }
 
 .ContactContainer {
+  list-style: none;
   position: absolute;
   top: 20vh;
   left: 20%;
@@ -42,20 +43,37 @@
   margin: 30px;
   height: 90px;
   width: 90px;
+  padding: 0px;
   background: white;
+  color: black;
+  text-decoration: none;
+  text-align: left;
+  font: inherit;
   border: 0px solid transparent;
   border-radius: 50px;
   position: relative;
   overflow: hidden;
   display: flex;
-  transition: .8s width;
+  align-items: center;
+  cursor: pointer;
+  transition: .8s width, .3s box-shadow;
 }
 
-.ContactItem:hover {
+/* Expand to show the label on hover (mouse) or keyboard focus.
+   On touch screens a single tap opens the link directly. */
+@media (hover: hover) {
+  .ContactItem:hover {
+    width: 400px;
+    box-shadow: 0 0 18px rgba(46, 108, 255, 0.8);
+  }
+}
+
+.ContactItem:focus-visible {
   width: 400px;
 }
 
 .icon {
+  flex-shrink: 0;
   height: 70px;
   width: 70px;
   border: 1px solid transparent;
@@ -80,40 +98,55 @@
 }
 
 .Hidden {
-  margin-top: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .HiddenLink {
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
   margin-left: 20px;
   font-size: 25px;
   color: black;
   text-decoration: none;
-  font-family: 'Delicious Handrawn', cursive;
-  font-family: 'Fira Sans', sans-serif;
-  font-family: 'Kalam', cursive;
-  font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   letter-spacing: 1px;
   transition: .6s;
 }
 
-.HiddenLink:hover {
+.ContactItem:hover .HiddenLink {
   filter: brightness(0.9) invert(0.7) sepia(0.5) hue-rotate(100deg) saturate(200%) contrast(40%);
 }
 
 .EmailLogo{
   height: 30px;
   width: 30px;
+  object-fit: contain;
   margin-left: 8px;
 }
 
 .contactme {
-  float: right;
   position: absolute;
   right: 0px;
   top: 5%;
+  width: 499px;
+  height: auto;
+  max-width: 45%;
+  animation: contactWave 4s ease-in-out infinite;
+  transform-origin: 50% 80%;
+}
+
+.ContactFooter {
+  position: absolute;
+  bottom: 14px;
+  left: 20px;
+  z-index: 5;
+  color: #c8c8c8;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 .ContactLogo {
@@ -131,6 +164,16 @@
   background-color: rgb(46, 108, 255);
   border: 0px solid;
   border-radius: 100% 0% 0% 0%;
+}
+
+@keyframes contactWave {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-1.5deg);
+  }
 }
 
 @keyframes rotate {
@@ -172,21 +215,31 @@
     width: 50px;
   }
 
-  .ContactItem:hover {
+  .ContactItem:focus-visible {
     width: 300px;
   }
 
   .contactme {
     height: 300px;
     width: 300px;
+    max-width: none;
     top: 10%;
-  }
-
-  .Hidden {
-    margin-top: 24px;
   }
 
   .HiddenLink {
     font-size: 18px;
+  }
+}
+@media (max-width: 1000px) and (hover: hover) {
+  .ContactItem:hover {
+    width: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .contactme {
+    height: 240px;
+    width: 240px;
+    right: -10px;
   }
 }

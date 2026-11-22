@@ -9,15 +9,72 @@
 html{
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background: rgb(43, 43, 43);
+}
+body{
+  overflow-x: hidden;
 }
 button{
   cursor: pointer;
 }
-
 
 h1{
   color: white;
 }
 section{
   background: rgb(43, 43, 43);
+  scroll-margin-top: 60px;
+}
+
+/* Keyboard focus ring in the site's gold accent */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible{
+  outline: 3px solid #FFD700;
+  outline-offset: 3px;
+}
+
+.SkipLink{
+  position: absolute;
+  left: 10px;
+  top: -60px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: #FFD700;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.SkipLink:focus{
+  top: 10px;
+}
+
+.visually-hidden{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Section titles are h2 now (one h1 per page) but keep the old look */
+.SectionHeader{
+  color: white;
 }

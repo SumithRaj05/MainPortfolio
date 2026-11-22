@@ -1,5 +1,10 @@
+.SkillItem {
+    list-style: none;
+}
+
 .SkillLine {
     margin: 30px;
+    margin-top: 18px;
     background: transparent;
     display: flex;
 }
@@ -20,12 +25,30 @@
 
 .skillFont {
     font-size: 22px;
+    margin-top: 6px;
     margin-left: 20px;
-    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    font-weight: bold;
     font-family: 'Tsukimi Rounded', sans-serif;
     letter-spacing: 2px;
 }
 
-.active {
+/* Dots light up one by one when the section scrolls in */
+.showSkills .active {
     background-color: yellow;
+}
+
+.showSkills .point2 { transition-delay: 0.15s; }
+.showSkills .point3 { transition-delay: 0.3s; }
+.showSkills .point4 { transition-delay: 0.45s; }
+.showSkills .point5 { transition-delay: 0.6s; }
+
+.SkillItem:hover .active {
+    box-shadow: 0 0 10px yellow;
+}
+
+@media (max-width: 1000px) {
+    .skillFont {
+        font-size: 19px;
+    }
 }

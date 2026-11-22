@@ -59,7 +59,7 @@
     background-color: transparent;
     color: white;
     resize: none;
-    border: solid 2px black;
+    border: solid 2px #8a8a8a;
     transition: 0.5s;
 }
 
@@ -67,25 +67,32 @@
     background-color: transparent;
     color: white;
     border: solid 1.8px;
-    border-color: transparent transparent black transparent;
+    border-color: transparent transparent #8a8a8a transparent;
     transition: 0.5s;
     width: 50%;
 }
 
 .Name:focus, .Email:focus{
     outline: none;
+    border-bottom-width: 3px;
     border-color: transparent transparent white transparent;
 }
 
 .Message:focus{
     outline: none;
+    box-shadow: 0 0 0 2px #FFD700;
     border-color: white;
 }
 
+.ContactButtons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-right: 70px;
+}
+
 .ContactSubmit{
-    float: right;
     margin: 10px;
-    margin-right: 80px;
     height: 50px;
     width: 150px;
     font-family: 'Delicious Handrawn', cursive;
@@ -106,7 +113,7 @@
     color: black;
 }
 
-.ContactSubmit:focus{
+.ContactSubmit:focus:not(:focus-visible){
     outline: none;
 }
 
@@ -139,5 +146,23 @@
     }
     .Name, .Email, .Message{
         margin: 10px;
+    }
+    .TextContainer{
+        box-sizing: border-box;
+        width: 86%;
+        left: 7%;
+        padding: 14px;
+    }
+    .Name, .Email, .Message{
+        width: calc(100% - 44px);
+        font-size: 17px;
+    }
+    .ContactButtons{
+        margin-right: 0px;
+    }
+    .ContactSubmit{
+        width: 120px;
+        height: 46px;
+        font-size: 20px;
     }
 }

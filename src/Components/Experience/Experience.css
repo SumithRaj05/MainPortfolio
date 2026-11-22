@@ -1,0 +1,246 @@
+.ExperienceSection {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 10px;
+    padding-bottom: 80px;
+    overflow: hidden;
+}
+
+.ExperienceHeader {
+    font-size: 40px;
+    margin-top: 8%;
+    margin-bottom: 60px;
+    text-align: center;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.ExperienceHeader::after {
+    position: relative;
+    content: '';
+    height: 1px;
+    width: 5%;
+    left: 47.5%;
+    margin-top: 20px;
+    display: grid;
+    background: white;
+}
+
+.Timeline {
+    position: relative;
+    z-index: 5;
+    width: min(760px, 86%);
+    margin: auto;
+}
+
+.TimelineList {
+    list-style: none;
+    position: relative;
+    padding-left: 50px;
+}
+
+/* the blue line */
+.TimelineList::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    border-radius: 4px;
+    background: rgb(46, 108, 255);
+}
+
+.TimelineItem {
+    position: relative;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.TimelineItem:nth-child(2) { transition-delay: 0.15s; }
+.TimelineItem:nth-child(3) { transition-delay: 0.3s; }
+
+.TimelineItem.showTimeline {
+    opacity: 1;
+    transform: none;
+}
+
+.TimelineDot {
+    position: absolute;
+    left: -44px;
+    top: 22px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #FFD700;
+    border: 4px solid rgb(43, 43, 43);
+    box-shadow: 0 0 0 3px rgb(46, 108, 255);
+}
+
+.TimelineItem:first-child .TimelineDot {
+    animation: timelinePulse 2s ease-in-out infinite;
+}
+
+.TimelineCard {
+    background-color: #ffdd8a;
+    border: solid 5px #ffbe19;
+    border-radius: 10px;
+    padding: 18px 22px;
+    box-shadow: 10px 10px 20px black;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.TimelineCard:hover {
+    transform: translateY(-4px) rotate(-0.4deg);
+    box-shadow: 12px 14px 24px black;
+}
+
+.TimelineWhen {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: white;
+    background: rgb(29, 78, 216);
+    border-radius: 20px;
+    padding: 3px 12px;
+}
+
+.TimelineRole {
+    margin-top: 10px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 24px;
+    color: black;
+}
+
+.TimelineOrg {
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    color: #3a2c00;
+    margin-top: 2px;
+}
+
+.TimelinePoints {
+    margin-top: 10px;
+    padding-left: 22px;
+    font-family: 'Kalam', cursive;
+    font-size: 19px;
+    line-height: 1.5;
+    color: black;
+}
+
+.CertList {
+    margin-top: 10px;
+    padding-left: 50px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.CertList.showTimeline {
+    opacity: 1;
+    transform: none;
+}
+
+.CertHeader {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 26px;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.CertList ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.CertChip {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: black;
+    background: #ffdd8a;
+    border: 2px solid #ffbe19;
+    border-radius: 30px;
+    padding: 8px 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.CertChip:hover {
+    transform: translateY(-3px);
+    background: #FFD700;
+}
+
+.BlueBall3 {
+    background: rgb(46, 108, 255);
+    height: 260px;
+    width: 260px;
+    border-radius: 50%;
+    position: absolute;
+    right: -90px;
+    top: 18%;
+}
+
+@keyframes timelinePulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgb(46, 108, 255); }
+    50% { box-shadow: 0 0 0 8px rgba(46, 108, 255, 0.45); }
+}
+
+@media (max-width: 1000px) {
+    .ExperienceHeader {
+        text-align: left;
+        margin-left: 20px;
+        margin-top: 90px;
+        margin-bottom: 40px;
+    }
+
+    .ExperienceHeader::after {
+        height: 0px;
+    }
+
+    .Timeline {
+        width: 92%;
+    }
+
+    .TimelineList {
+        padding-left: 36px;
+    }
+
+    .TimelineList::before {
+        left: 8px;
+    }
+
+    .TimelineDot {
+        left: -36px;
+    }
+
+    .TimelineCard {
+        padding: 14px 16px;
+        box-shadow: 6px 6px 14px black;
+    }
+
+    .TimelineRole {
+        font-size: 20px;
+    }
+
+    .TimelinePoints {
+        font-size: 17px;
+    }
+
+    .CertList {
+        padding-left: 0px;
+    }
+
+    .CertChip {
+        font-size: 14px;
+    }
+
+    .BlueBall3 {
+        height: 140px;
+        width: 140px;
+        right: -60px;
+        top: 6%;
+    }
+}

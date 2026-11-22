@@ -4,15 +4,16 @@ import "./SkillBar.css";
 export default function SkillBar(props) {
 
     return (
-        <React.Fragment>
-            <h1 className="skillFont">{props.Skill}</h1>
-            <div className="SkillLine">
-                <div className={`point1 ${props.Points >= 1 ? "active" : ""}`}></div>
-                <div className={`point2 ${props.Points >= 2 ? "active" : ""}`}></div>
-                <div className={`point3 ${props.Points >= 3 ? "active" : ""}`}></div>
-                <div className={`point4 ${props.Points >= 4 ? "active" : ""}`}></div>
-                <div className={`point5 ${props.Points >= 5 ? "active" : ""}`}></div>
+        <li className="SkillItem">
+            <h3 className="skillFont">{props.Skill}</h3>
+            <div className="SkillLine" role="img" aria-label={`${props.Points} out of 5`}>
+                {[1, 2, 3, 4, 5].map((n) => (
+                    <div
+                        key={n}
+                        className={`point${n} ${props.Points >= n ? "active" : ""}`}
+                    ></div>
+                ))}
             </div>
-        </React.Fragment>
+        </li>
     )
 }
